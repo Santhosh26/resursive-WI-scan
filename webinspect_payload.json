@@ -1,0 +1,19 @@
+{
+    "settingsName": "Default",
+      "overrides": {
+      "scanName": "",
+      "startUrls": [
+        ""
+      ],
+      "userAgent": {
+        "standard": "firefox"
+      },
+      "crawlAuditMode": "crawlOnly",
+      "scanStrategy": "simultaneously",
+      "crawlCoverageMode": "default",
+      "startOption": "url",
+      "policyId": "1fded15b-716b-4101-95c2-a19c2a422366",
+      "dontStartScan": false,
+      "disableTrafficMonitor": true
+   }
+  }
