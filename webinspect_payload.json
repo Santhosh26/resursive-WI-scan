@@ -8,7 +8,7 @@
       "userAgent": {
         "standard": "firefox"
       },
-      "crawlAuditMode": "crawlOnly",
+      "crawlAuditMode": "CrawlAndAudit",
       "scanStrategy": "simultaneously",
       "crawlCoverageMode": "default",
       "startOption": "url",

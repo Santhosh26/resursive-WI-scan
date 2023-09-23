@@ -19,12 +19,13 @@ with open("urls.txt", "r") as f:
     urls = [url.strip() for url in f.readlines()]
 
 # Function to check scan status
-def check_scan_status(scan_id, url):
-    time.sleep(10)  # Sleeping for 10 seconds to stabilize the status.
+def check_scan_status(scan_id):
+    time.sleep(20)  # Sleeping for 20 seconds to stabilize the status.
     while True:
         response = requests.get(STATUS_ENDPOINT.format(scanId=scan_id), headers=HEADERS)
         if response.status_code == 200:
-            status = response.json().get("status")  
+            status = response.json().get("status")
+            print(status) 
             if status == "Complete":
                 return True
             elif status in ["Incomplete", "Running", "NotRunning"]:
@@ -36,6 +37,7 @@ def check_scan_status(scan_id, url):
                     Infile.write(f"The scan for this URL is Interrupted: {url}\n")  
                 return True
             else:
+                print(status) 
                 print(f"Unknown status for {scan_id}: {status}")
                 return False
         else:
@@ -63,9 +65,10 @@ for url in urls:
     
     # Check the response
     if response.status_code == 201:  # Adjusted as per your API response, change if needed
-        scan_id = response.json().get("scanId")  # Adjusted the key
+        scan_id = response.json().get("ScanId")
+        print(scan_id) 
         print(f"Scan created successfully for {url} with scanId: {scan_id}")
-        if scan_id and not check_scan_status(scan_id, url):  # Passed the url to the function
+        if scan_id and not check_scan_status(scan_id):  
             print(f"Scan for {url} with scanId {scan_id} did not complete successfully. Stopping further scans.")
             break
     else:
